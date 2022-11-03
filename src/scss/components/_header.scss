@@ -1,0 +1,15 @@
+.header {
+  background-color: #311813;
+  padding: 25px 15px;
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+  &__category {
+    margin-right: 12px;
+  }
+}

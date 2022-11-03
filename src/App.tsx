@@ -1,7 +1,12 @@
-import "./App.css";
+import "./scss/app.scss";
+import Header from "./components/Header";
 
-function App() {
-  return <div className="App"></div>;
-}
+const App = () => {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+};
 
 export default App;
