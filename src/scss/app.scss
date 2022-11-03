@@ -8,3 +8,15 @@
   max-width: 400px;
   margin: auto;
 }
+.swiper {
+    padding-bottom: 20px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #311813 !important;
+}
+.swiper-container-horizontal,
+.swiper-pagination {
+  position: absolute !important;
+  bottom: 0 !important;
+}
