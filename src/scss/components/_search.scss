@@ -1,0 +1,39 @@
+.search {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+  &__block {
+    position: relative;
+    width: 340px;
+    display: flex;
+    align-items: center;
+    input {
+      padding: 10px 10px 10px 40px;
+      width: 100%;
+      height: 40px;
+      background: #f6f4f2;
+      border-radius: 3px;
+      outline: none;
+      border: none;
+      font-size: 16px;
+
+      &::placeholder {
+        font-size: 16px;
+        color: #a59c94;
+      }
+    }
+  }
+  &__icon {
+    position: absolute;
+    margin-left: 10px;
+  }
+  &__close {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+  }
+  &__help {
+    cursor: pointer;
+  }
+}

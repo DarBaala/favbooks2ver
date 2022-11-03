@@ -1,15 +1,50 @@
 .header {
   background-color: #311813;
-  padding: 25px 15px;
+  padding: 25px 0px;
   &__wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
+  &__logo {
+    cursor: pointer;
   }
   &__left {
     display: flex;
     align-items: center;
   }
   &__category {
-    margin-right: 12px;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+  &__user {
+    cursor: pointer;
+  }
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+  &__cart {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    cursor: pointer;
+    p {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      width: 15px;
+      height: 14px;
+      margin-left: 15px;
+      margin-bottom: 30px;
+      background-color: #4f9167;
+      border-radius: 7px;
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+  &__favorite {
+    cursor: pointer;
   }
 }
