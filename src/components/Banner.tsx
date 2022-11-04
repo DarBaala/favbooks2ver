@@ -20,8 +20,6 @@ const Banner = () => {
           spaceBetween={50}
           slidesPerView={1}
           pagination={{ clickable: true }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           <SwiperSlide>
             <Link className="banner__photo" to="/banners">
@@ -29,12 +27,12 @@ const Banner = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Link to="/banners">
+            <Link className="banner__photo" to="/banners">
               <img src="img/banner.png" alt="Banner: Books" />
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Link to="/banners">
+            <Link className="banner__photo" to="/banners">
               <img src="img/banner.png" alt="Banner: Books" />
             </Link>
           </SwiperSlide>

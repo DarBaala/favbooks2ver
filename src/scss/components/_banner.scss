@@ -1,3 +1,10 @@
 .banner {
   display: flex;
+  &__photo {
+    img {
+      width: 398px;
+      height: 248px;
+      border-radius: 3px;
+    }
+  }
 }
