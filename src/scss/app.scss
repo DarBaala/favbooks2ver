@@ -5,11 +5,14 @@
   background-color: #fafafa;
 }
 .container {
-  max-width: 400px;
+  max-width: 380px;
   margin: auto;
+  @media (max-width: 389px) {
+    max-width: 340px;
+  }
 }
 .swiper {
-    padding-bottom: 20px !important;
+  padding-bottom: 20px !important;
 }
 
 .swiper-pagination-bullet-active {

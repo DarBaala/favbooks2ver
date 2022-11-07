@@ -3,8 +3,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 15px;
     grid-row-gap: 15px;
+    grid-column-gap: 5px;
+    @media (max-width: 389px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   &__title {
     font-weight: 600;
@@ -69,8 +72,10 @@
   &__favorites {
     background-color: #ffffff;
     border-radius: 4px;
+    justify-items: center;
     border: none;
     padding: 6px 4px 2px 4px;
     margin-right: 5px;
+    cursor: pointer;
   }
 }
