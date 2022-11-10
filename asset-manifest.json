@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/favbooks2ver/static/css/main.8e541d01.css",
+    "main.css": "/favbooks2ver/static/css/main.0884d190.css",
     "main.js": "/favbooks2ver/static/js/main.3e5c242b.js",
     "index.html": "/favbooks2ver/index.html",
-    "main.8e541d01.css.map": "/favbooks2ver/static/css/main.8e541d01.css.map",
+    "main.0884d190.css.map": "/favbooks2ver/static/css/main.0884d190.css.map",
     "main.3e5c242b.js.map": "/favbooks2ver/static/js/main.3e5c242b.js.map"
   },
   "entrypoints": [
-    "static/css/main.8e541d01.css",
+    "static/css/main.0884d190.css",
     "static/js/main.3e5c242b.js"
   ]
 }
