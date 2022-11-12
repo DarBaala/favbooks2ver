@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Search from "../components/Search";
 import Banner from "../components/Banner";
-import Categories from "../components/Categories";
+import Tags from "../components/Tags";
 import BooksBlock from "../components/BooksBlock";
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
       <Header />
       <Search />
       <Banner />
-      <Categories />
+      <Tags />
       <BooksBlock />
     </div>
   );

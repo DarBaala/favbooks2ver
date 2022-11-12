@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
 import { fetchProduct } from "../redux/slices/productSlice";
-import { setFavorites, setDelete } from "../redux/slices/favoritesSlice";
-import type { RootState, AppDispatch } from "../redux/store";
+import {
+  setFavorites,
+  setFavoritesDelete,
+} from "../redux/slices/favoritesSlice";
+import { setCart, setCartDelete } from "../redux/slices/cartSlice";
 import { ProductItem } from "../redux/slices/productSlice";
-
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-export const useAppDispatch: () => AppDispatch = useDispatch;
+import { useAppDispatch, useAppSelector } from "../redux/store";
 
 const BooksBlock: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,12 +15,21 @@ const BooksBlock: React.FC = () => {
   }, [dispatch]);
   const product = useAppSelector((state) => state.product.items);
   const favObj = useAppSelector((state) => state.favorites.items);
+  const cartObj = useAppSelector((state) => state.cart.items);
 
   const handleFavorites = (obj: ProductItem) => {
     if (favObj.find((favObj) => favObj.id === obj.id)) {
-      dispatch(setDelete(obj));
+      dispatch(setFavoritesDelete(obj));
     } else {
       dispatch(setFavorites(obj));
+    }
+  };
+
+  const handleCart = (obj: ProductItem) => {
+    if (cartObj.find((cartObj) => cartObj.id === obj.id)) {
+      dispatch(setCartDelete(obj));
+    } else {
+      dispatch(setCart(obj));
     }
   };
 
@@ -39,7 +48,21 @@ const BooksBlock: React.FC = () => {
                     <p className="books__author">{obj.author}</p>
                     <div className="books__price">{obj.price} РУБ.</div>
                     <div className="books__bottom">
-                      <button className="books__buy">В корзину</button>
+                      <button
+                        onClick={() => handleCart(obj)}
+                        className="books__buy"
+                        style={
+                          cartObj.find((cartObj) => cartObj.id === obj.id)
+                            ? {
+                                backgroundColor: "#4F9167",
+                              }
+                            : { backgroundColor: "#311813" }
+                        }
+                      >
+                        {cartObj.find((cartObj) => cartObj.id === obj.id)
+                          ? "Добавлено"
+                          : "В корзину"}
+                      </button>
                       <button
                         onClick={() => handleFavorites(obj)}
                         className="books__favorites"

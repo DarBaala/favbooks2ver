@@ -1,6 +1,13 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 111;
   background-color: #311813;
-  padding: 25px 5px;
+  padding: 21px 5px;
+  a {
+    display: flex;
+    align-items: center;
+  }
   &__wrapper {
     display: flex;
     align-items: center;
@@ -8,17 +15,20 @@
   }
   &__logo {
     cursor: pointer;
+    width: 100px;
   }
   &__left {
     display: flex;
     align-items: center;
   }
   &__category {
-    margin-right: 15px;
+    margin-right: 10px;
     cursor: pointer;
+    width: 18px;
   }
   &__user {
     cursor: pointer;
+    width: 18px;
   }
   &__right {
     display: flex;
@@ -43,8 +53,12 @@
       font-weight: 400;
       font-size: 12px;
     }
+    img {
+      width: 16px;
+    }
   }
   &__favorite {
+    width: 18px;
     cursor: pointer;
   }
 }

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const categoriesData = [
   {
     title: "Ислам",
@@ -33,25 +35,27 @@ const categoriesData = [
   },
 ];
 
-const Categories = () => {
+const Tags = () => {
   return (
     <div className="container">
-      <div className="categories">
-        <div className="categories__wrapper">
+      <div className="tags">
+        <div className="tags__wrapper">
           {categoriesData.map((obj) => (
-            <div key={obj.title} className="categories__items">
-              <img src={obj.imgUrl} alt="Categories" />
+            <div key={obj.title} className="tags__items">
+              <img src={obj.imgUrl} alt="tags" />
               <p>{obj.title}</p>
             </div>
           ))}
         </div>
-        <div className="categories__bottom">
-          <div className="categories__popular">
+        <div className="tags__bottom">
+          <div className="tags__popular">
             <button>Популярное</button>
             <img src="img/lightning.svg" alt="Icon: Popular" />
           </div>
-          <div className="categories__all">
-            <button>Все категории</button>
+          <div className="tags__all">
+            <Link to="/categories">
+              <button>Все категории</button>
+            </Link>
             <img src="img/category-icon.svg" alt="" />
           </div>
         </div>
@@ -60,4 +64,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default Tags;
