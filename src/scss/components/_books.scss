@@ -5,11 +5,12 @@
     grid-template-rows: repeat(2, 1fr);
     grid-row-gap: 15px;
     grid-column-gap: 5px;
+    justify-items: center;
     @media (max-width: 389px) {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  &__title {
+  &__headline {
     font-weight: 600;
     font-size: 24px;
     color: #070509;
@@ -23,6 +24,10 @@
   }
   &__media {
     margin-bottom: 15px;
+    height: 145px;
+    max-width: 125px;
+    border-radius: 5px;
+    object-fit: contain;
   }
 
   &__card {
@@ -35,12 +40,18 @@
     background-color: #f6f4f2;
     border-radius: 5px;
   }
+  &__top {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   &__bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  &__name {
+  &__title {
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
@@ -57,6 +68,8 @@
     font-size: 14px;
     line-height: 16px;
     color: #070509;
+    margin-bottom: 5px;
+    margin-top: 5px;
   }
   &__buy {
     min-width: 76px;

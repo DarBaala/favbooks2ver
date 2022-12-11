@@ -1,0 +1,33 @@
+.register {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    padding: 35px 0;
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      color: #070509;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 15px;
+      background-color: #f6f4f2;
+      border-radius: 3px;
+      border: none;
+      font-size: 16px;
+      color: #070509;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #311813;
+      border-radius: 3px;
+      padding: 15px;
+      font-size: 18px;
+      color: #fafafa;
+      border: 0;
+      outline: none;
+      margin-top: 10px;
+      line-height: 19px;
+    }
+  }
+}

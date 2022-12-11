@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../axios";
 
 export type ProductItem = {
-  id: number;
-  name: string;
-  imgUrl: string;
-  author: string;
+  _id: string;
+  title: string;
+  imageUrl: string;
+  author: [string];
   price: number;
+  tags: string;
+  popular: number;
 };
 
 export enum Status {
@@ -20,12 +22,13 @@ interface ProductSliceState {
   status: Status;
 }
 
-export const fetchProduct = createAsyncThunk("cart/fetchProduct", async () => {
-  const { data } = await axios.get(
-    "https://62ae44a6b735b6d16a40a5cd.mockapi.io/product"
-  );
-  return data;
-});
+export const fetchProduct = createAsyncThunk(
+  "product/fetchProduct",
+  async () => {
+    const { data } = await axios.get("/product");
+    return data;
+  }
+);
 
 const initialState: ProductSliceState = {
   items: [],

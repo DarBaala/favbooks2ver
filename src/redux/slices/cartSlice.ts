@@ -20,7 +20,7 @@ export const cartSlice = createSlice({
       state.count++
     },
     setCartDelete(state, action) {
-      state.items = state.items.filter((obj) => obj.id !== action.payload.id);
+      state.items = state.items.filter((obj) => obj._id !== action.payload._id);
       state.count--
     },
   },

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Header from "../components/Header";
 
 const Login = () => {
@@ -11,7 +13,9 @@ const Login = () => {
           <p className="login__title">Пароль</p>
           <input type="password" className="login__password" />
           <button className="login__sign-in">Войти</button>
-          <p className="login__register">Регистрация</p>
+          <Link to="/auth/register">
+            <p className="login__register">Регистрация</p>
+          </Link>
         </form>
       </div>
     </div>
