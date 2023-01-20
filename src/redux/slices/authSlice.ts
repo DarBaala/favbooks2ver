@@ -20,6 +20,10 @@ type UserAuth = {
   email: string;
   password: string;
 };
+type UserRegister = {
+  email: string;
+  password: string;
+};
 
 interface AuthsSliceState {
   status: Status;
@@ -43,6 +47,14 @@ export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {
   const { data } = await axios.get("auth/me");
   return data;
 });
+
+export const fetchRegister = createAsyncThunk(
+  "auth/fetchRegister",
+  async (params: UserRegister) => {
+    const { data } = await axios.post("auth/register", params);
+    return data;
+  }
+);
 
 export const authSlice = createSlice({
   name: "auth",
@@ -76,6 +88,18 @@ export const authSlice = createSlice({
       state.status = Status.SUCCESS;
     });
     builder.addCase(fetchAuthMe.rejected, (state) => {
+      state.status = Status.ERROR;
+      state.data = null;
+    });
+    builder.addCase(fetchRegister.pending, (state) => {
+      state.status = Status.LOADING;
+      state.data = null;
+    });
+    builder.addCase(fetchRegister.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.status = Status.SUCCESS;
+    });
+    builder.addCase(fetchRegister.rejected, (state) => {
       state.status = Status.ERROR;
       state.data = null;
     });

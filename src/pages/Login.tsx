@@ -6,15 +6,15 @@ import TapBar from "../components/TapBar";
 import Header from "../components/Header";
 import { fetchAuth } from "../redux/slices/authSlice";
 
+type UserAuth = {
+  email: string;
+  password: string;
+};
+
 const Login = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => Boolean(state.auth.data));
   console.log(isAuth);
-
-  type UserAuth = {
-    email: string;
-    password: string;
-  };
 
   const {
     register,
@@ -36,6 +36,7 @@ const Login = () => {
     }
     if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token);
+      return <Navigate to="/profile" />;
     }
   };
 
@@ -61,27 +62,23 @@ const Login = () => {
             type="text"
             className="login__email"
           />
-          {errors.email ? (
+          {errors.email && (
             <p style={{ color: "red" }}>{errors.email.message}</p>
-          ) : (
-            ""
           )}
           <p className="login__title">Пароль</p>
           <input
             {...register("password", {
               required: "Пожалуйста, укажите пароль",
               minLength: {
-                value: 7,
-                message: "Пароль должен состоять как минимум из 7 символов",
+                value: 8,
+                message: "Пароль должен состоять как минимум из 8 символов",
               },
             })}
             type="password"
             className="login__password"
           />
-          {errors.password ? (
+          {errors.password && (
             <p style={{ color: "red" }}>{errors.password.message}</p>
-          ) : (
-            ""
           )}
           <button type="submit" className="login__sign-in">
             Войти

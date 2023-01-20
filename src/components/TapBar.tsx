@@ -6,6 +6,7 @@ const TapBar = () => {
   const cartCount = useAppSelector((state) => state.cart.count);
 
   let { pathname } = useLocation();
+  console.log(pathname);
 
   return (
     <div className="tapbar">
@@ -72,13 +73,19 @@ const TapBar = () => {
             <img
               className="tapbar__user-icon"
               src={
-                pathname === "/auth"
+                pathname === "/auth" || pathname === "/profile"
                   ? "/img/user-icon-active.svg"
                   : "/img/user-icon.svg"
               }
               alt=""
             />
-            <p style={pathname === "/auth" ? { color: "#C5A17C" } : {}}>
+            <p
+              style={
+                pathname === "/auth" || pathname === "/profile"
+                  ? { color: "#C5A17C" }
+                  : {}
+              }
+            >
               Профиль
             </p>
           </Link>

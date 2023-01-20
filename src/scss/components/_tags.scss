@@ -49,12 +49,16 @@
       right: 10px;
       bottom: 8px;
     }
+    button {
+      background-color: #a35330;
+    }
   }
   &__all {
     cursor: pointer;
     position: relative;
     button {
       padding-right: 37px;
+      background-color: #C38D57;
     }
     img {
       position: absolute;

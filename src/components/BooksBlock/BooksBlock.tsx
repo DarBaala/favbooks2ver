@@ -69,9 +69,9 @@ const BooksBlock: React.FC = () => {
                         style={
                           cartObj.find((cartObj) => cartObj._id === obj._id)
                             ? {
-                                backgroundColor: "#4F9167",
+                                backgroundColor: "#a35330",
                               }
-                            : { backgroundColor: "#311813" }
+                            : { backgroundColor: "#C38D57" }
                         }
                       >
                         {cartObj.find((cartObj) => cartObj._id === obj._id)
