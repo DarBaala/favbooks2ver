@@ -9,11 +9,7 @@ type FormValues = {
 };
 
 const Register = () => {
-  const {
-    formState: { errors },
-    register,
-    handleSubmit,
-  } = useForm<FormValues>();
+  const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit = (data: FormValues) => {};
 
   return (
