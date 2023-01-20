@@ -1,6 +1,7 @@
 import TapBar from "../components/TapBar";
 
 import { useForm } from "react-hook-form";
+import Header from "../components/Header";
 
 type FormValues = {
   firstName: string;
@@ -14,6 +15,7 @@ const Register = () => {
 
   return (
     <div className="register">
+      <Header />
       <TapBar />
       <div className="container">
         <form onSubmit={handleSubmit(onSubmit)} className="register__form">

@@ -3,35 +3,43 @@ import { Link } from "react-router-dom";
 const categoriesData = [
   {
     title: "Ислам",
-    imgUrl: "img/categories-img.svg",
+    imgUrl: "img/categories-islam.svg",
+    link: "/categories/islam",
   },
   {
     title: "Роман",
-    imgUrl: "img/categories-img.svg",
+    imgUrl: "img/categories-roman.svg",
+    link: "/categories/roman",
   },
   {
     title: "Детектив",
-    imgUrl: "img/categories-img.svg",
+    imgUrl: "img/categories-det.svg",
+    link: "/categories/detective",
   },
   {
     title: "Открытки",
-    imgUrl: "img/categories-img.svg",
+    imgUrl: "img/categories-card.svg",
+    link: "/categories/card",
   },
   {
-    title: "Книги б/у",
-    imgUrl: "img/categories-img.svg",
+    title: "Медицина",
+    imgUrl: "img/categories-medicine.svg",
+    link: "/categories/medicine",
   },
   {
     title: "Фэнтези",
-    imgUrl: "img/categories-img.svg",
+    imgUrl: "img/categories-fantasy.svg",
+    link: "/categories/fantasy",
   },
   {
     title: "Психология",
-    imgUrl: "img/categories-img.svg",
+    imgUrl: "img/categories-psychology.svg",
+    link: "/categories/psychology",
   },
   {
     title: "Бизнес",
-    imgUrl: "img/categories-img.svg",
+    imgUrl: "img/categories-business.svg",
+    link: "/categories/business",
   },
 ];
 
@@ -41,10 +49,12 @@ const Tags = () => {
       <div className="tags">
         <div className="tags__wrapper">
           {categoriesData.map((obj) => (
-            <div key={obj.title} className="tags__items">
-              <img src={obj.imgUrl} alt="tags" />
-              <p>{obj.title}</p>
-            </div>
+            <Link to={obj.link}>
+              <div key={obj.title} className="tags__items">
+                <img src={obj.imgUrl} alt="tags" />
+                <p>{obj.title}</p>
+              </div>
+            </Link>
           ))}
         </div>
         <div className="tags__bottom">
@@ -55,8 +65,8 @@ const Tags = () => {
           <div className="tags__all">
             <Link to="/categories">
               <button>Все категории</button>
+              <img src="img/category.svg" alt="Icon: Сategories" />
             </Link>
-            <img src="img/category-icon.svg" alt="" />
           </div>
         </div>
       </div>

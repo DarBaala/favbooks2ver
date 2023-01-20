@@ -1,7 +1,6 @@
 {
   "name": "favbooks2ver",
-  "version": "0.1.0",
-  "homepage": "https://darbaala.github.io/favbooks2ver/",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
