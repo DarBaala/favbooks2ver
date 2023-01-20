@@ -5,6 +5,7 @@ import cart from "./slices/cartSlice";
 import product from "./slices/productSlice";
 import favorites from "./slices/favoritesSlice";
 import tags from "./slices/tagsSlice";
+import auth from "./slices/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     product,
     favorites,
     tags,
+    auth,
   },
 });
 

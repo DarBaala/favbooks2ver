@@ -14,7 +14,7 @@ const TapBar = () => {
           <Link to="/">
             <img
               className="tapbar__home-icon"
-              src={pathname === "/" ? "img/home-active.svg" : "img/home.svg"}
+              src={pathname === "/" ? "/img/home-active.svg" : "/img/home.svg"}
               alt=""
             />
             <p style={pathname === "/" ? { color: "#C5A17C" } : {}}>Главная</p>
@@ -24,8 +24,8 @@ const TapBar = () => {
               className="tapbar__category-icon"
               src={
                 pathname === "/categories"
-                  ? "img/category-header-active.svg"
-                  : "img/category-header.svg"
+                  ? "/img/category-header-active.svg"
+                  : "/img/category-header.svg"
               }
               alt=""
             />
@@ -38,8 +38,8 @@ const TapBar = () => {
               className="tapbar__cart-icon"
               src={
                 pathname === "/cart"
-                  ? "img/cart-header-active.svg"
-                  : "img/cart-header.svg"
+                  ? "/img/cart-header-active.svg"
+                  : "/img/cart-header.svg"
               }
               alt=""
             />
@@ -59,8 +59,8 @@ const TapBar = () => {
               className="tapbar__favorite-icon"
               src={
                 pathname === "/favorites"
-                  ? "img/favorite-header-active.svg"
-                  : "img/favorite-header.svg"
+                  ? "/img/favorite-header-active.svg"
+                  : "/img/favorite-header.svg"
               }
               alt=""
             />
@@ -73,8 +73,8 @@ const TapBar = () => {
               className="tapbar__user-icon"
               src={
                 pathname === "/auth"
-                  ? "img/user-icon-active.svg"
-                  : "img/user-icon.svg"
+                  ? "/img/user-icon-active.svg"
+                  : "/img/user-icon.svg"
               }
               alt=""
             />

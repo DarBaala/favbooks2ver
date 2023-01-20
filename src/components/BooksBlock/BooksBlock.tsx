@@ -25,8 +25,6 @@ const BooksBlock: React.FC = () => {
   const favObj = useAppSelector((state) => state.favorites.items);
   const cartObj = useAppSelector((state) => state.cart.items);
   const status = useAppSelector((state) => state.product.status);
-  const tags = useAppSelector((state) => state.tags.tags);
-
 
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />

@@ -49,8 +49,8 @@ const Tags = () => {
       <div className="tags">
         <div className="tags__wrapper">
           {categoriesData.map((obj) => (
-            <Link to={obj.link}>
-              <div key={obj.title} className="tags__items">
+            <Link key={obj.title} to={obj.link}>
+              <div className="tags__items">
                 <img src={obj.imgUrl} alt="tags" />
                 <p>{obj.title}</p>
               </div>

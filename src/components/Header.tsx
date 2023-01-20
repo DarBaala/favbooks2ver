@@ -9,7 +9,7 @@ const Header: React.FunctionComponent = () => {
           <Link to="/">
             <img
               className="header__logo"
-              src="img/favbooks-logo.svg"
+              src="/img/favbooks-logo.svg"
               alt="Logo: Favbooks"
             />
           </Link>
