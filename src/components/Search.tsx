@@ -11,7 +11,6 @@ const Search: React.FC = () => {
           <input type="text" placeholder="Искать" className="search__input" />
           <img src="img/close-icon.svg" alt="" className="search__close" />
         </div>
-        <img src="img/support.svg" alt="Icon: Help" className="search__help" />
       </div>
     </div>
   );

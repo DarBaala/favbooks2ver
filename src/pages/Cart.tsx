@@ -1,9 +1,9 @@
-import Header from "../components/Header";
+import TapBar from "../components/TapBar";
 
 const Cart = () => {
   return (
     <div>
-      <Header />
+      <TapBar />
     </div>
   );
 };

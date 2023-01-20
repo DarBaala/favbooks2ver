@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-import Header from "../components/Header";
+import TapBar from "../components/TapBar";
 
 const Login = () => {
   return (
     <div className="login">
-      <Header />
+      <TapBar />
       <div className="container">
         <form action="" className="login__form">
           <p className="login__title">E-mail</p>

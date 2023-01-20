@@ -1,4 +1,4 @@
-import Header from "../components/Header";
+import TapBar from "../components/TapBar";
 
 import { useForm } from "react-hook-form";
 
@@ -18,7 +18,7 @@ const Register = () => {
 
   return (
     <div className="register">
-      <Header />
+      <TapBar />
       <div className="container">
         <form onSubmit={handleSubmit(onSubmit)} className="register__form">
           <p className="register__title">Имя</p>

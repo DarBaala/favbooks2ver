@@ -1,9 +1,9 @@
-import Header from "../components/Header";
+import TapBar from "../components/TapBar";
 
 const Category = () => {
   return (
     <div>
-      <Header />
+      <TapBar />
     </div>
   );
 };

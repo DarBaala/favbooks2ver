@@ -1,17 +1,17 @@
-import Header from "../components/Header";
 import Search from "../components/Search";
 import Banner from "../components/Banner";
 import Tags from "../components/Tags";
 import BooksBlock from "../components/BooksBlock/BooksBlock";
+import TapBar from "../components/TapBar";
 
 const Home = () => {
   return (
     <div>
-      <Header />
       <Search />
       <Banner />
       <Tags />
       <BooksBlock />
+      <TapBar />
     </div>
   );
 };

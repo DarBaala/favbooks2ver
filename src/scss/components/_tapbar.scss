@@ -1,0 +1,54 @@
+.tapbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 8px;
+  background-color: #311813;
+  a {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+  }
+  &__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__home-icon {
+    margin: 1px 0;
+  }
+  &__category-icon {
+    margin: 3px 0 4px;
+  }
+  &__favorite-icon {
+    margin: 2px 0;
+  }
+  &__user-icon {
+    margin: 2px 0 1px;
+  }
+  &__cart-count {
+    right: 5px;
+    bottom: 35px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 18px;
+    height: 15px;
+    background-color: #4f9167;
+    border-radius: 7px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 12px;
+  }
+  p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #fff;
+  }
+  img {
+    width: 20px;
+  }
+}
