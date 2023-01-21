@@ -1,0 +1,117 @@
+.addproduct {
+  padding: 30px 0;
+  &__what-product {
+    display: flex;
+    flex-direction: column;
+    p {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 18px;
+    }
+    div {
+      display: flex;
+      align-items: center;
+    }
+    button {
+      cursor: pointer;
+      height: 40px;
+      width: 100%;
+      border: none;
+      font-size: 16px;
+      color: #fff;
+      background-color: #c38d57;
+      &:nth-child(1) {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  &__book {
+    padding: 30px 0 60px;
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      color: #070509;
+      margin-bottom: 13px;
+    }
+    input {
+      width: 100%;
+      padding: 15px;
+      background-color: #f6f4f2;
+      border-radius: 3px;
+      border: none;
+      font-size: 16px;
+      color: #070509;
+      margin-bottom: 13px;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      padding: 15px;
+      font-size: 16px;
+      background-color: #f6f4f2;
+      border-radius: 3px;
+      border: none;
+      resize: none;
+      margin-bottom: 13px;
+    }
+    button {
+      width: 100%;
+      cursor: pointer;
+      background-color: #311813;
+      border-radius: 3px;
+      padding: 15px;
+      font-size: 18px;
+      color: #fafafa;
+      border: 0;
+      outline: none;
+      line-height: 19px;
+    }
+  }
+  &__tags {
+    select {
+      margin-bottom: 13px;
+    }
+  }
+
+  &__binding {
+    display: flex;
+    margin-bottom: 13px;
+    div {
+      position: relative;
+      cursor: pointer;
+    }
+    img {
+      width: 130px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 3px;
+      filter: blur(2px);
+    }
+    p {
+      top: 20px;
+      left: 35px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+  &__softcover {
+    margin-right: 15px;
+    p {
+      position: absolute;
+    }
+  }
+  &__hardcover {
+    p {
+      position: absolute;
+      left: 30px;
+    }
+  }
+  &__card {
+    padding: 30px 0 60px;
+  }
+}

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useRef } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import TapBar from "../components/TapBar";
 import Header from "../components/Header";
@@ -118,6 +118,9 @@ const Register = () => {
           <button type="submit" className="register__sign-in">
             Зарегистрироваться
           </button>
+          <Link to="/auth">
+            <p className="login__register">У меня уже есть аккаунт</p>
+          </Link>
         </form>
       </div>
     </div>

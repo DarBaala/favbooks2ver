@@ -81,7 +81,7 @@ const Profile = () => {
               <div className="profile__items">Мой адрес</div>
             </Link>
             <div onClick={signOut} className="profile__items">
-              <a>Выйти</a>
+              <p>Выйти</p>
             </div>
           </div>
         </div>

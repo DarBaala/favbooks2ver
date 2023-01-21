@@ -1,0 +1,43 @@
+.admin {
+  padding: 20px 10px;
+  &__help {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: center;
+    padding: 20px 0;
+    a {
+      width: 100%;
+      &:nth-child(1) {
+        grid-area: 1 / 1 / 2 / 3;
+        background-color: #c38d57;
+      }
+      &:nth-child(2) {
+        background-color: #a35330;
+      }
+      &:nth-child(3) {
+        background-color: #5a5223;
+      }
+      &:nth-child(4) {
+        background-color: #311813;
+      }
+      &:nth-child(5) {
+        background-color: #916339;
+      }
+    }
+  }
+  &__banners {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 75px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #fafafa;
+    cursor: pointer;
+  }
+}
