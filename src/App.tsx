@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { fetchAuthMe } from "./redux/slices/authSlice";
 import { useEffect } from "react";
@@ -12,14 +12,19 @@ import Category from "./pages/Categories";
 import Favorites from "./pages/Favorites";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => Boolean(state.auth.data));
+  const isAdmin = useAppSelector((state) => Boolean(state.auth.data?.admin));
 
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
+
+  console.log(isAdmin);
 
   return (
     <Routes>
@@ -30,6 +35,8 @@ const App = () => {
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/profile" element={<Profile />} />
+      {isAdmin && <Route path="/admin" element={<Admin />} />}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

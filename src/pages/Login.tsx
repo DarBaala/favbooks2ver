@@ -30,6 +30,7 @@ const Login = () => {
   });
 
   const onSubmit = async (values: UserAuth) => {
+    values.email = values.email.toLocaleLowerCase();
     const data = await dispatch(fetchAuth(values));
     if (!data.payload) {
       return alert("Не удалось авторизоваться, проверьте данные!");

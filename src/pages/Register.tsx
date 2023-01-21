@@ -22,7 +22,7 @@ const Register = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       fullName: "",
@@ -37,6 +37,7 @@ const Register = () => {
   password.current = watch("password", "");
 
   const onSubmit = async (values: UserAuth) => {
+    values.email = values.email.toLocaleLowerCase();
     const data = await dispatch(fetchRegister(values));
     if (!data.payload) {
       return alert("Не удалось зарегистрироваться, проверьте данные!");

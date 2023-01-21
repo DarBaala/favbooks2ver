@@ -15,6 +15,7 @@ type UserType = {
   updatedAt: string;
   __v: number;
   _id: string;
+  admin?: boolean;
 };
 type UserAuth = {
   email: string;

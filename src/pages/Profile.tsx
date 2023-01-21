@@ -8,8 +8,6 @@ import Header from "../components/Header";
 const Profile = () => {
   const data = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
-  console.log(data);
-
   const navigate = useNavigate();
 
   const signOut = () => {
@@ -30,43 +28,60 @@ const Profile = () => {
           </p>
         </div>
         <div className="profile__banners">
-          <div>
-            <Link to={"/orders"}>
+          <Link to={"/orders"}>
+            <div>
               <p>Заказы</p>
-            </Link>
-          </div>
-          <div>
-            <Link to={"/sale"}>
+            </div>
+          </Link>
+          <Link to={"/sale"}>
+            <div>
               <p>Акции</p>
-            </Link>
-          </div>
-          <div>
-            <Link to={"/support"}>
+            </div>
+          </Link>
+          <Link to={"/support"}>
+            <div>
               <p>Поддержка</p>
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
+        {data?.admin && (
+          <Link to={"/admin"}>
+            <div className="profile__admin">
+              <p>Админка</p>
+            </div>
+          </Link>
+        )}
         <div className="profile__menu">
           <h3>Профиль</h3>
           <div className="profile__list">
-            <div className="profile__items">
-              <Link to="/">Доставка</Link>
-            </div>
-            <div className="profile__items">
-              <Link to="/">Купленные товары</Link>
-            </div>
-            <div className="profile__items">
-              <Link to="/">Коды и сертификаты</Link>
-            </div>
-            <div className="profile__items">
-              <Link to="/">Личная информация</Link>
-            </div>
-
-            <div className="profile__items">
-              <Link to="/">Мой адрес</Link>
-            </div>
-            <div className="profile__items">
-              <a onClick={signOut}>Выйти</a>
+            <Link to="/">
+              <div className="profile__items">Доставка</div>
+            </Link>
+            <Link to="/cart">
+              <div className="profile__items">Корзина</div>
+            </Link>
+            <Link to="/favorites">
+              <div className="profile__items">Избранное</div>
+            </Link>
+            <Link to="/">
+              <div className="profile__items">Купленные товары</div>
+            </Link>
+            <Link to="/">
+              <div style={{ marginBottom: "20px" }} className="profile__items">
+                Коды и сертификаты
+              </div>
+            </Link>
+          </div>
+          <h3>Настройки</h3>
+          <div className="profile__list">
+            <Link to="/">
+              <div className="profile__items">Личная информация</div>
+            </Link>
+            <Link to="/">
+              <div className="profile__items">Мой адрес</div>
+            </Link>
+            <div onClick={signOut} className="profile__items">
+              <a>Выйти</a>
             </div>
           </div>
         </div>
