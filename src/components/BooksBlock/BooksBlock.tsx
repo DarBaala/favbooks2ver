@@ -25,6 +25,7 @@ const BooksBlock: React.FC = () => {
   const favObj = useAppSelector((state) => state.favorites.items);
   const cartObj = useAppSelector((state) => state.cart.items);
   const status = useAppSelector((state) => state.product.status);
+  console.log(product);
 
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
@@ -60,6 +61,7 @@ const BooksBlock: React.FC = () => {
                     <div className="books__top">
                       <p className="books__title">{obj.title}</p>
                       <p className="books__author">{obj.author.join(", ")}</p>
+                      <p className="books__title">{obj.tags}</p>
                     </div>
                     <div className="books__price">{obj.price} РУБ.</div>
                     <div className="books__bottom">

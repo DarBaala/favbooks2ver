@@ -7,7 +7,7 @@ export type ProductItem = {
   imageUrl: string;
   author: [string];
   price: number;
-  tags: string;
+  tags: Array<string>;
   popular: number;
 };
 
