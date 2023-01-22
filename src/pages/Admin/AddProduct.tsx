@@ -24,12 +24,24 @@ const AddProduct = () => {
       numberPages: "",
       description: "",
       binding: "",
+      amount: "",
       tags: [{}],
     },
     mode: "onChange",
   });
 
-  const tagsArray: Array<string> = ["1sa,a", "saffdeqa", "eq1sa,a", "saffaeq"];
+  const tagsArray: Array<string> = [
+    "психология",
+    "ислам",
+    "фэнтези",
+    "детектив",
+    "бизнес",
+    "медицина",
+    "роман",
+    "саморазвитие",
+    "исторический",
+    "кораны",
+  ];
 
   const optionSchema = (arr: Array<string>) => {
     const optionArr: Array<object> = [];
@@ -37,7 +49,7 @@ const AddProduct = () => {
       const str = item.toString();
       let newStr: string = "";
       if (
-        str[0] !== "1" ||
+        str[0] != "1" ||
         "2" ||
         "3" ||
         "4" ||
@@ -60,8 +72,6 @@ const AddProduct = () => {
   };
 
   let options: Array<object> = [{}];
-
-  console.log(optionSchema(tagsArray));
 
   if (tagsArray) {
     options = optionSchema(tagsArray);
@@ -103,11 +113,25 @@ const AddProduct = () => {
     }
   };
   const onSubmit = (values: any) => {
-    let arr: Array<string> = [];
-    values.tags.forEach((item: string) => {
-      arr = [...arr, item];
+    let arrTags: Array<string> = [];
+    let arrAuthors: Array<string> = values.author.split(", ");
+    let arrCapitalLetters: Array<string> = [];
+
+    arrAuthors.forEach((item: string) => {
+      arrCapitalLetters = [
+        ...arrCapitalLetters,
+        item[0].toUpperCase() + item.slice(1),
+      ];
     });
-    values.tags = arr;
+    console.log(arrAuthors, arrCapitalLetters);
+
+    values.tags.forEach((item: string) => {
+      arrTags = [...arrTags, item[0].toUpperCase() + item.slice(1)];
+    });
+
+    values.author = arrCapitalLetters;
+    values.tags = arrTags;
+
     console.log(values);
   };
 
@@ -203,6 +227,8 @@ const AddProduct = () => {
                   })}
                   type="number"
                 />
+                <p>Колличество товара в наличии</p>
+                <input {...register("amount", {})} type="number" />
                 <p>Описание</p>
                 <textarea
                   {...register("description", {
@@ -255,7 +281,7 @@ const AddProduct = () => {
                       <p>Твердый</p>
                     </div>
                   </div>
-                  {errors.binding && (
+                  {errors.binding && !binding && (
                     <p
                       style={{
                         color: "red",
