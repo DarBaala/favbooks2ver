@@ -1,13 +1,30 @@
-import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useState, useRef } from "react";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import axios from "../../axios";
 
 import Select from "react-select";
 
 import Header from "../../components/Header";
 import TapBar from "../../components/TapBar";
 
+interface addBookTypes {
+  title: string;
+  author: string | Array<string>;
+  price: number | string;
+  numberPages: number | string;
+  description: string;
+  binding: string;
+  amount: number | string;
+  tags: string | Array<string>;
+  image: string;
+}
+
 const AddProduct = () => {
   const [whatProduct, setWhatProduct] = useState("");
+  const [urlImage, setUrlImage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const inputFilesRef = useRef<HTMLInputElement>(null);
+
   const [binding, setBinding] = useState("");
 
   const {
@@ -25,7 +42,8 @@ const AddProduct = () => {
       description: "",
       binding: "",
       amount: "",
-      tags: [{}],
+      tags: "",
+      image: "",
     },
     mode: "onChange",
   });
@@ -47,21 +65,7 @@ const AddProduct = () => {
     const optionArr: Array<object> = [];
     arr.forEach((item) => {
       const str = item.toString();
-      let newStr: string = "";
-      if (
-        str[0] != "1" ||
-        "2" ||
-        "3" ||
-        "4" ||
-        "5" ||
-        "6" ||
-        "7" ||
-        "8" ||
-        "9" ||
-        "0"
-      ) {
-        newStr = str[0].toUpperCase() + str.slice(1);
-      }
+      let newStr: string = str[0].toUpperCase() + str.slice(1);
       const obj = {
         value: `${item}`,
         label: `${newStr}`,
@@ -76,6 +80,8 @@ const AddProduct = () => {
   if (tagsArray) {
     options = optionSchema(tagsArray);
   }
+
+  console.log(options);
 
   const colourStyles = {
     option: (styles: any, { isFocused }: any) => {
@@ -112,10 +118,48 @@ const AddProduct = () => {
       }
     }
   };
-  const onSubmit = (values: any) => {
+
+  const handleChangeFiles = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsLoading(true);
+
+    try {
+      if (!e.target.files) {
+        return;
+      }
+      let formData = new FormData();
+      const file = e.target.files[0];
+      formData.append("image", file);
+      console.log(file);
+      // if (
+      //   file.type !== "image/jpeg" ||
+      //   "image/png" ||
+      //   "image/webp" ||
+      //   "image/gif" ||
+      //   "image/avif" ||
+      //   "image/tiff" ||
+      //   "image/svg"
+      // ) {
+      //   alert("Неподходящий формат файла!");
+      //   setIsLoading(false);
+      //   return;
+      // }
+      const { data } = await axios.post("/upload/resized", formData);
+      setUrlImage(data.url);
+      console.log(data.url);
+    } catch (error) {
+      console.error(errors.image?.message);
+    }
+    setIsLoading(false);
+  };
+
+  const onSubmit: SubmitHandler<addBookTypes> = (values) => {
     let arrTags: Array<string> = [];
-    let arrAuthors: Array<string> = values.author.split(", ");
     let arrCapitalLetters: Array<string> = [];
+    let arrAuthors: Array<string> = [];
+
+    if (typeof values.author === "string") {
+      arrAuthors = values.author.split(", ");
+    }
 
     arrAuthors.forEach((item: string) => {
       arrCapitalLetters = [
@@ -123,15 +167,20 @@ const AddProduct = () => {
         item[0].toUpperCase() + item.slice(1),
       ];
     });
-    console.log(arrAuthors, arrCapitalLetters);
 
-    values.tags.forEach((item: string) => {
-      arrTags = [...arrTags, item[0].toUpperCase() + item.slice(1)];
-    });
+    if (Array.isArray(values.tags)) {
+      values.tags.forEach((item: string) => {
+        arrTags = [...arrTags, item[0].toUpperCase() + item.slice(1)];
+      });
+    }
 
+    values.amount = +values.amount;
+    values.price = +values.price;
+    values.numberPages = +values.numberPages;
+    values.description = values.description.replace(/\n/g, "\n");
     values.author = arrCapitalLetters;
     values.tags = arrTags;
-
+    values.image = urlImage;
     console.log(values);
   };
 
@@ -141,7 +190,7 @@ const AddProduct = () => {
       <div className="container">
         <div className="addproduct">
           <div className="addproduct__what-product">
-            <p>Какой продукт Вы хотите добавить?</p>
+            <p> Какой продукт Вы хотите добавить?</p>
             <div>
               <button
                 style={
@@ -180,55 +229,106 @@ const AddProduct = () => {
                 <p>Название товара</p>
                 <input
                   {...register("title", {
-                    required: "Пожалуйста, напшиите название книги",
+                    required: "Пожалуйста, напишите название книги",
                   })}
                   type="text"
                 />
+                {errors.title && (
+                  <p style={{ fontSize: "14px", color: "red" }}>
+                    {errors.title.message}
+                  </p>
+                )}
                 <p>Автор (если их более одного — через запятую)</p>
                 <input
                   {...register("author", {
-                    required: "Пожалуйста, автора",
+                    required: "Пожалуйста, заполните поле автора",
                   })}
                   type="text"
                 />
-                <div className="addproduct__tags">
-                  <p>Жанр книги</p>
-                  <Controller
-                    control={control}
-                    defaultValue={options.map((c: any) => c.value)}
-                    name="tags"
-                    render={({ field: { onChange, value, ref } }) => (
-                      <Select
-                        placeholder="Жанры"
-                        styles={colourStyles}
-                        value={options.filter((c: any) =>
-                          value.includes(c.value)
-                        )}
-                        onChange={(val) =>
-                          onChange(val.map((c: any) => c.value))
-                        }
-                        options={options}
-                        isMulti
-                      />
+                {errors.author && (
+                  <p style={{ fontSize: "14px", color: "red" }}>
+                    {errors.author.message}
+                  </p>
+                )}
+                {options && (
+                  <div className="addproduct__tags">
+                    <p>Жанр книги</p>
+                    <Controller
+                      control={control}
+                      name="tags"
+                      render={({ field: { onChange, value, ref } }) => (
+                        <Select
+                          {...register("tags", {
+                            required: "Пожалуйста, выберите хотя бы один жанр",
+                          })}
+                          placeholder="Жанры"
+                          styles={colourStyles}
+                          // defaultValue={options.filter((c: any) => c)}
+                          value={options.filter((c: any) =>
+                            value.includes(c.value)
+                          )}
+                          onChange={(val) =>
+                            onChange(val.map((c: any) => c.value))
+                          }
+                          options={options}
+                          isMulti
+                        />
+                      )}
+                    />
+                    {errors.tags && (
+                      <p style={{ fontSize: "14px", color: "red" }}>
+                        {errors.tags.message}
+                      </p>
                     )}
-                  />
-                </div>
+                  </div>
+                )}
                 <p>Цена</p>
                 <input
                   {...register("price", {
                     required: "Пожалуйста, напишите цену",
+                    pattern: {
+                      value: /^(0|[1-9]\d*)(\.\d+)?$/,
+                      message: "В поле цены можно вводить лишь числа",
+                    },
                   })}
                   type="number"
                 />
+                {errors.price && (
+                  <p style={{ fontSize: "14px", color: "red" }}>
+                    {errors.price.message}
+                  </p>
+                )}
                 <p>Количество страниц</p>
                 <input
                   {...register("numberPages", {
-                    required: "Пожалуйста, заполните поле страниц",
+                    pattern: {
+                      value: /^(0|[1-9]\d*)(\.\d+)?$/,
+                      message: "В поле страниц можно вводить лишь числа",
+                    },
                   })}
                   type="number"
                 />
-                <p>Колличество товара в наличии</p>
-                <input {...register("amount", {})} type="number" />
+                {errors.numberPages && (
+                  <p style={{ fontSize: "14px", color: "red" }}>
+                    {errors.numberPages.message}
+                  </p>
+                )}
+                <p>Количество товара в наличии</p>
+                <input
+                  {...register("amount", {
+                    pattern: {
+                      value: /^(0|[1-9]\d*)(\.\d+)?$/,
+                      message:
+                        "В поле количество товара можно вводить лишь числа",
+                    },
+                  })}
+                  type="number"
+                />
+                {errors.amount && (
+                  <p style={{ fontSize: "14px", color: "red" }}>
+                    {errors.amount.message}
+                  </p>
+                )}
                 <p>Описание</p>
                 <textarea
                   {...register("description", {
@@ -243,7 +343,6 @@ const AddProduct = () => {
                   className="addproduct__binding"
                 >
                   <div>
-                    {" "}
                     <div
                       onClick={() => {
                         setBinding("Мягкий");
@@ -295,8 +394,47 @@ const AddProduct = () => {
                   )}
                 </div>
                 <p>Изображение</p>
-                <input type="file" />
-                <button>Добавить книгу</button>
+                <input
+                  hidden
+                  ref={inputFilesRef}
+                  onChange={handleChangeFiles}
+                  type="file"
+                  onClick={(e: any) => {
+                    e.target.value = null;
+                  }}
+                />
+                <div>
+                  <button
+                    onClick={() => {
+                      inputFilesRef.current?.click();
+                    }}
+                    className="addproduct__button-img"
+                    type="button"
+                  >
+                    Загрузить
+                  </button>
+                  {isLoading && <p>Картинка загружается...</p>}
+                  {urlImage && !isLoading && (
+                    <button
+                      style={{ marginLeft: "13px", backgroundColor: "#311813" }}
+                      onClick={() => {
+                        setUrlImage("");
+                      }}
+                      className="addproduct__button-img"
+                      type="button"
+                    >
+                      Удалить
+                    </button>
+                  )}
+                </div>
+                {urlImage && (
+                  <img
+                    style={{ width: "100%", marginBottom: "20px" }}
+                    src={urlImage}
+                    alt=""
+                  />
+                )}
+                <button className="addproduct__button">Добавить книгу</button>
               </form>
             </div>
           )}

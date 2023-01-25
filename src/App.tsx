@@ -24,8 +24,6 @@ const App = () => {
     dispatch(fetchAuthMe());
   }, []);
 
-  console.log(isAdmin);
-
   return (
     <Routes>
       <Route path="/" element={<Home />} />

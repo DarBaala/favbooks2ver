@@ -5,7 +5,7 @@ export type ProductItem = {
   _id: string;
   title: string;
   imageUrl: string;
-  author: [string];
+  author: Array<string>;
   price: number;
   tags: Array<string>;
   popular: number;

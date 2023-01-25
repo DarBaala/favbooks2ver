@@ -47,7 +47,7 @@ const Register = () => {
     }
   };
 
-  if (isAuth) {
+  if (window.localStorage.getItem("token") && isAuth) {
     return <Navigate to="/profile" />;
   }
 
