@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { fetchAuthMe } from "./redux/slices/authSlice";
+import { fetchCart } from "./redux/slices/cartSlice";
 import { useEffect } from "react";
 
 import "./scss/app.scss";
@@ -19,9 +20,12 @@ import NotFound from "./pages/NotFound";
 const App = () => {
   const dispatch = useAppDispatch();
   const isAdmin = useAppSelector((state) => Boolean(state.auth.data?.admin));
+  const cart = useAppSelector((state) => state.cart.cart);
+  console.log(cart);
 
   useEffect(() => {
     dispatch(fetchAuthMe());
+    dispatch(fetchCart());
   }, []);
 
   return (

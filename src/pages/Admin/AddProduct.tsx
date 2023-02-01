@@ -264,9 +264,6 @@ const AddProduct = () => {
                           placeholder="Жанры"
                           styles={colourStyles}
                           // defaultValue={options.filter((c: any) => c)}
-                          value={options.filter((c: any) =>
-                            value.includes(c.value)
-                          )}
                           onChange={(val) =>
                             onChange(val.map((c: any) => c.value))
                           }

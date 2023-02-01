@@ -1,13 +1,17 @@
 import { useEffect } from "react";
+
+import { CartItem } from "../../redux/slices/cartSlice";
 import { fetchProduct } from "../../redux/slices/productSlice";
 import { fetchTags } from "../../redux/slices/tagsSlice";
 import {
   setFavorites,
   setFavoritesDelete,
 } from "../../redux/slices/favoritesSlice";
-import { setCart, setCartDelete } from "../../redux/slices/cartSlice";
+import { fetchAddToCart } from "../../redux/slices/cartSlice";
 import { ProductItem } from "../../redux/slices/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
+
+import axios from "../../axios";
 
 import Skeleton from "./Skeleton";
 
@@ -23,9 +27,8 @@ const BooksBlock: React.FC = () => {
 
   const product = useAppSelector((state) => state.product.items);
   const favObj = useAppSelector((state) => state.favorites.items);
-  const cartObj = useAppSelector((state) => state.cart.items);
+  const cartItems = useAppSelector((state) => state.cart.cart);
   const status = useAppSelector((state) => state.product.status);
-  console.log(product);
 
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
@@ -39,12 +42,30 @@ const BooksBlock: React.FC = () => {
     }
   };
 
+  const truncate = (str: string) => {
+    return str.length > 37 ? str.substring(0, 34) + "..." : str;
+  };
+
+  // async function fetchAddCart() {
+  //   try {
+  //     await axios.post("/cart", cartObj);
+  //   } catch (error) {
+  //     console.error("При добавлении товара в корзину произошла ошибка :(");
+  //     alert("При добавлении товара в корзину произошла ошибка :(");
+  //   }
+  //   console.log("Сработал пост запрос", cartObj);
+  // }
+
   const handleCart = (obj: ProductItem) => {
-    if (cartObj.find((cartObj) => cartObj._id === obj._id)) {
-      dispatch(setCartDelete(obj));
-    } else {
-      dispatch(setCart(obj));
-    }
+    const items = {
+      quantity: 1,
+      price: obj.price,
+      product_id: obj._id,
+      totalPrice: obj.price,
+    };
+    console.log("Сработало добавление в редакс", items);
+
+    dispatch(fetchAddToCart(items));
   };
 
   return (
@@ -60,8 +81,9 @@ const BooksBlock: React.FC = () => {
                   <div className="books__card">
                     <div className="books__top">
                       <p className="books__title">{obj.title}</p>
-                      <p className="books__author">{obj.author.join(", ")}</p>
-                      <p className="books__title">{obj.tags}</p>
+                      <p className="books__author">
+                        {truncate(obj.author.join(", "))}
+                      </p>
                     </div>
                     <div className="books__price">{obj.price} РУБ.</div>
                     <div className="books__bottom">
@@ -69,14 +91,18 @@ const BooksBlock: React.FC = () => {
                         onClick={() => handleCart(obj)}
                         className="books__buy"
                         style={
-                          cartObj.find((cartObj) => cartObj._id === obj._id)
+                          cartItems?.find(
+                            (cartItems: CartItem) => cartItems.product_id === obj._id
+                          )
                             ? {
                                 backgroundColor: "#a35330",
                               }
                             : { backgroundColor: "#C38D57" }
                         }
                       >
-                        {cartObj.find((cartObj) => cartObj._id === obj._id)
+                        {cartItems?.find(
+                          (cartItems: CartItem) => cartItems.product_id === obj._id
+                        )
                           ? "Добавлено"
                           : "В корзину"}
                       </button>

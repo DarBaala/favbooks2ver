@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 const TapBar = () => {
   const cartCount = useAppSelector((state) => state.cart.count);
   let { pathname } = useLocation();
+  console.log(cartCount);
 
   return (
     <div className="tapbar">
