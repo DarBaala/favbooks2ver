@@ -20,6 +20,7 @@ import NotFound from "./pages/NotFound";
 const App = () => {
   const dispatch = useAppDispatch();
   const isAdmin = useAppSelector((state) => Boolean(state.auth.data?.admin));
+  const isAuth = useAppSelector((state) => Boolean(state.auth.data));
   const cart = useAppSelector((state) => state.cart.cart);
   console.log(cart);
 
@@ -27,6 +28,10 @@ const App = () => {
     dispatch(fetchAuthMe());
     dispatch(fetchCart());
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchCart());
+  }, [isAuth]);
 
   return (
     <Routes>

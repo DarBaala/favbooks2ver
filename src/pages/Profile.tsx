@@ -1,5 +1,6 @@
 import { useAppSelector, useAppDispatch } from "../redux/store";
 import { setLogout } from "../redux/slices/authSlice";
+import { setClearCart } from "../redux/slices/cartSlice";
 import { useNavigate, Link } from "react-router-dom";
 
 import TapBar from "../components/TapBar";
@@ -13,6 +14,7 @@ const Profile = () => {
   const signOut = () => {
     if (window.confirm("Вы действительно хотите выйтис аккаунта?")) {
       dispatch(setLogout());
+      dispatch(setClearCart());
       navigate("/");
     }
   };
