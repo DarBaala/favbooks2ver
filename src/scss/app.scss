@@ -16,8 +16,12 @@ body {
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #311813 !important;
+  background-color: #a35330 !important;
 }
+.swiper-pagination-bullet {
+  background-color: #c38d57 !important;
+}
+
 .swiper-container-horizontal,
 .swiper-pagination {
   position: absolute !important;

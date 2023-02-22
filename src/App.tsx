@@ -30,7 +30,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchCart());
+    dispatch(fetchCart());            
   }, [isAuth]);
 
   return (

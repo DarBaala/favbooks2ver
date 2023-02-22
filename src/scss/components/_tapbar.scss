@@ -30,15 +30,16 @@
     margin: 2px 0 1px;
   }
   &__cart-count {
+    position: absolute;
     right: 5px;
-    bottom: 35px;
+    bottom: 31px;
     display: flex;
     justify-content: center;
-    position: absolute;
-    width: 18px;
-    height: 15px;
+    align-items: center;
+    width: 20px;
+    height: 20px;
     background-color: #a35330;
-    border-radius: 7px;
+    border-radius: 10px;
     color: #ffffff;
     font-weight: 400;
     font-size: 12px;

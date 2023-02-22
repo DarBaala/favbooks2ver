@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { CartItem } from "../../redux/slices/cartSlice";
 import { fetchProduct } from "../../redux/slices/productSlice";
 import { fetchTags } from "../../redux/slices/tagsSlice";
@@ -11,12 +13,12 @@ import { fetchAddToCart } from "../../redux/slices/cartSlice";
 import { ProductItem } from "../../redux/slices/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 
-import axios from "../../axios";
-
 import Skeleton from "./Skeleton";
 
 const BooksBlock: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(fetchTags());
   }, [dispatch]);
@@ -46,17 +48,14 @@ const BooksBlock: React.FC = () => {
     return str.length > 37 ? str.substring(0, 34) + "..." : str;
   };
 
-  // async function fetchAddCart() {
-  //   try {
-  //     await axios.post("/cart", cartObj);
-  //   } catch (error) {
-  //     console.error("При добавлении товара в корзину произошла ошибка :(");
-  //     alert("При добавлении товара в корзину произошла ошибка :(");
-  //   }
-  //   console.log("Сработал пост запрос", cartObj);
-  // }
-
   const handleCart = (obj: ProductItem) => {
+    if (
+      cartItems?.find((cartItems: CartItem) => cartItems.product_id === obj._id)
+    ) {
+      console.log("В корзинку");
+      navigate("/cart");
+      return;
+    }
     const items = {
       quantity: 1,
       price: obj.price,
@@ -92,7 +91,8 @@ const BooksBlock: React.FC = () => {
                         className="books__buy"
                         style={
                           cartItems?.find(
-                            (cartItems: CartItem) => cartItems.product_id === obj._id
+                            (cartItems: CartItem) =>
+                              cartItems.product_id === obj._id
                           )
                             ? {
                                 backgroundColor: "#a35330",
@@ -101,9 +101,10 @@ const BooksBlock: React.FC = () => {
                         }
                       >
                         {cartItems?.find(
-                          (cartItems: CartItem) => cartItems.product_id === obj._id
+                          (cartItems: CartItem) =>
+                            cartItems.product_id === obj._id
                         )
-                          ? "Добавлено"
+                          ? "Оформить"
                           : "В корзину"}
                       </button>
                       <button

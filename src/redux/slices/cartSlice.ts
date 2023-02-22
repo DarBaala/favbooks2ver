@@ -60,13 +60,15 @@ export const cartSlice = createSlice({
       state.status = Status.LOADING;
     });
     builder.addCase(fetchCart.fulfilled, (state, action) => {
-      const { cartItems } = action.payload;
-      let all = 0;
-      cartItems.forEach((item: CartItem) => {
-        all = all + item.quantity;
-      });
-      state.count = all;
-      state.cart = cartItems;
+      if (action.payload) {
+        const { cartItems } = action.payload;
+        let all = 0;
+        cartItems.forEach((item: CartItem) => {
+          all = all + item.quantity;
+        });
+        state.count = all;
+        state.cart = cartItems;
+      }
       state.status = Status.SUCCESS;
     });
     builder.addCase(fetchCart.rejected, (state) => {
